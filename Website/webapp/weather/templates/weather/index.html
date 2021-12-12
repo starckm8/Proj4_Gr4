@@ -1,0 +1,94 @@
+<!--
+Funktion: HTML-Dokument für die Website zur Darstellung der Sensormesswerte
+
+Autoren: Timo Storm, Matthias Starck, Lisa Weidler
+
+Erstellt: 03.11.2021
+Letzte Änderung: 12.12.2021
+
+Titel: HTML-Website für Infolaborprojekt 4
+-->
+
+
+
+
+{% load static %}                                                                                           <!--Django-Tag zum Laden der statischen Daten, z.B. Bilder, css-Dokumente-->
+
+<!DOCTYPE html>                                                                                             <!--Dokumententyp und Sprache festlegen -->
+<html lang="de">                                                                                            <!--Beginn des HTML-Dokuments-->
+    <head>
+        <meta charset="UTF-8">                                                                              <!--Zeichencodierung festlegen-->
+        <title>Luftdaten</title>                                                                            <!--Titel der Webseite-->
+        <link rel="stylesheet" href="{% static 'weather/css/style3.css' %}">                                <!--Einbindung des style-sheets-->
+    </head>
+    <header>                                                                                                <!--Beginn Header-->
+        <div id="start" style="background-image: url('static/weather/img/main_bg.jpg');">                   <!--ID-Zuweisung, Einbindung des ersten Hintergrundbildes-->
+            <div style="position: absolute; left: 50%">                                                     <!--Festlegen der Position der Übersicht der aktuellen Werte-->
+                <div id="aktuell">
+                    <h1>Aktuelle <br /> Werte</h1>                                                          <!--Auf Titelseite dargestellter Text und mit Hyperlinks versehene Icons-->
+                    <div class="icon">
+                        <a href="#Temperatur"><img src="{% static 'weather/img/temp_icn.png' %}" width=100 height=100 style="margin: auto; display: block" alt="temperatur-icon"></a>
+                        <h2 style="text-align: center;">{{ current.temperature }} °C</h2>
+                    </div>
+                    <div class="icon">
+                        <a href="#Luftfeuchtigkeit"><img src="{% static 'weather/img/humidity_icn.png' %}" width=100 height=100 style="margin: auto; display: block" alt="temperatur-icon"></a>
+                        <h2 style="text-align: center;">{{ current.humidity }} %</h2>
+                    </div>
+                    <div class="icon">
+                        <a href="#Feinstaubbelastung"><img src="{% static 'weather/img/dust_icn.png' %}" width=100 height=100 style="margin: auto; display: block" alt="temperatur-icon"></a>
+                        <h2 style="text-align: center; white-space: nowrap;">{{ current.pm25 }} µg/m³</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>                                                                                               <!--Ende Header-->
+    <body>                                                                                                  <!--Beginn Body-->
+        <div id="content">
+            <section id="Temperatur" style="background-image: url('static/weather/img/dessert_bg.jpg');">
+                <div class="description" style="margin-right: 115px;">                                      <!--Klassenzuweisung für Beschreibung, um Formatierung im Folgenden zu vereinheitlichen-->
+                    <h1>Temperatur</h1>                                                                     <!--Überschrift des Absatzes-->
+                    <p style="line-height: 20px">Gerade für das Klima ist die Temperatur von großer         <!--Inhalt des Absatzes-->
+                        Bedeutung, weshalb es wichtig ist diese zu messen, zu vergleichen
+                        und Trends darzustellen.</p>
+                </div>
+                <div class="graph">                                                                         <!--Klassenzuweisung für Graph, um Formatierung im Folgenden zu vereinheitlichen-->
+                    {% autoescape off %}                                                                    <!--Darstellung HTML-spezifischer Zeichen ermöglichen-->
+                        {{ plot_temp }}                                                                     <!--Aufrufen des Temperatur-Diagramms-->
+                    {% endautoescape %}                                                                     <!--Ende Darstellung HTML-spezifischer Zeichen-->
+                </div>
+            </section>
+            <section id="Luftfeuchtigkeit" style="background-image: url('static/weather/img/rain_bg.jpg');">
+                <div class="graph">
+                    {% autoescape off %}
+                        {{ plot_hum }}
+                    {% endautoescape %}
+                </div>
+                <div class="description" style="margin-left: 115px;">
+                    <h1>Luftfeuchtigkeit</h1>
+                    <p style="line-height: 20px">Auch die Luftfeuchtigkeit spielt eine bedeutende Rolle, da sie einen
+                                                 großen Einfluss auf den Menschen und seine Umwelt hat. So sind wir bei
+                                                 hoher Luftfeuchtigkeit weniger belastbar, die Schimmelgefahr ist höher
+                                                 und Autos korrodieren schneller.</p>
+                </div>
+            </section>
+            <section id="Feinstaubbelastung" style="background-image: url('static/weather/img/dust_bg.jpg');">
+                <div class="description" style="margin-right: 115px;">
+                    <h1>Feinstaubbelastung</h1>
+                    <p style="line-height: 20px">Feinstaub wirkt sich negativ auf die Gesundheit des Menschen aus.
+                                                Dieser trägt nicht nur Schwermetalle und Krebs erregende Kohlenwasserstoffe
+                                                auf seiner Oberfläche in den Körper, sondern kann auch nicht mehr abgeatmet
+                                                oder von den Reinigungszellen der Lunge bekämpft werden.</p>
+                </div>
+                <div class="graph">
+                    {% autoescape off %}
+                        {{ plot_p25 }}
+                    {% endautoescape %}
+                </div>
+            </section>
+        </div>
+    </body>                                                                                                 <!--Ende Body-->
+    <footer>                                                                                                <!--Beginn Footer-->
+        <a href="#top"><div class="arrow bounce" style="background-image: url('static/weather/img/arrow_top_icn.png');"></div></a>  <!--Hyperlink zum Anfang der Webseite in Form eines hüpfenden Pfeils-->
+        <p>&copy; Timo Storm | Matthias Starck | Lisa Weidler</p>
+    </footer>                                                                                               <!--Ende Footer-->
+</html>                                                                                                     <!--Ende des HTML-Dokuments-->

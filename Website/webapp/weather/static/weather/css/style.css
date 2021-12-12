@@ -1,0 +1,122 @@
+/*
+Funktion: Formatierung der HTML-Website
+
+Autoren: Lisa Weidler, Timo Storm, Matthias Starck
+
+Erstelldatum: 03.11.2021
+Letzte Änderung: 12.12.2021
+
+Titel: CSS für Informatiklaboraufgabe 4
+*/
+
+html, body{                                     /*Allgemein Abstände und Schriftart festlegen*/
+    margin: 0;                                                      
+    padding: 0;                                                             
+    font-family: 'Montserrat', sans-serif;
+}
+
+#start{                                         /*Höhe und Positionierung des Hintergrundbildes für alles mit der ID "Start"*/
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+#aktuell{                                       /*Style für Div mit der ID "aktuell" festlegen. Z.B. Höhe, Rand und Hintergrundfarbe)*/
+     height: 20vh;
+     width: 150%;
+     display: block;
+     margin-top: 60vh;
+     left: -75%;
+     padding: 3%;
+     background: rgba(50, 50, 50, 0.8);
+     border-radius: 5vh;
+     position: relative;
+ }
+
+#aktuell .icon{                                 /*Style für Icons im Div "aktuell". Invertierung der Farbe, Anordnung und Breite*/
+    filter: invert(1);
+    float: left;
+    width: 25%;
+}
+
+#aktuell h1{                                    /*Style für Überschrift der Größe 1 im Div "aktuell"*/
+    margin-top: 5vh;
+    width: 25%;
+    float: left;
+    color: white;
+    vertical-align: middle;
+}
+
+section{                                        /*Style für alle Sections festlegen.*/
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 120px;
+}
+
+.description{                                   /*Style für Div's der Klasse "description": Anordnung, Hintergrundfarbe...*/
+    flex: 0 0 50%;
+    max-width: 50%;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2vh;
+    padding-left: 3%;
+}
+
+.description h1{                                /*Style für Überschriften der Größe 1 der Texte*/
+    color: #3b3a39;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 1.2em;
+    margin-bottom: 40px;
+}
+
+.description p{                                 /*Style für Absätze der Texte*/
+    letter-spacing: 0.6px;
+    color: #595959;
+    text-align: left;
+    font-size: 16px;
+}
+
+.graph{                                         /*Style für Div's der Klasse "graph"*/
+    flex: 0 0 50%;
+    max-width: 50%;
+    align-self: center;
+}
+
+.arrow{                                         /*Style für Hüpfenden Pfeil im Footer*/
+    position: relative;
+    bottom: -2rem;
+    left: 50%;
+    margin-left: -20px;
+    width: 60px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.bounce:hover{                                  /*Aufrufen der Animation, wenn der Mauszeiger über dem Pfeil schwebt*/
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce{                              /*Definierung der Keyframes der Animation (Verschiebung in Y-Richtung)*/
+    0%, 20%, 50%, 80%, 100%{
+        transform: translateY(0);
+    }
+    40%{
+        transform: translateY(-30px);
+    }
+    60%{
+        transform: translateY(-15px);
+    }
+}
+
+footer{                                         /*Style des Footers*/
+    text-align: center;
+    padding-bottom: 3vh;
+}
